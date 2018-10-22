@@ -1,10 +1,10 @@
 import * as React from "react";
 
-export default class About extends React.Component {
+export default class Contact extends React.Component {
   public render() {
     return (
       <div>
-        <p>ToDo: About page...</p>
+        <p>ToDo: Contact page...</p>
       </div>
     );
   }

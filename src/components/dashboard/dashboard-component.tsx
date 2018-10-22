@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Grid } from "react-bootstrap";
-import AddBloodCount from "../add_blood_count/add-blood-count-component";
+import AddBloodCount from "../blood_count/add-blood-count-component";
 
 export default class BloodCountDashboard extends React.Component {
   public render() {
