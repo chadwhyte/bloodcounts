@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Button, Grid } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import AddBloodCount from "../blood_count/add-blood-count.component";
-
+import "./dashboard.css";
 interface IState {
   addBloodCount: boolean;
 }
@@ -19,12 +19,15 @@ export default class BloodCountDashboard extends React.Component<{}, IState> {
 
   public render() {
     return (
-      <Grid>
+      <div>
         <h1>My blood counts</h1>
         <p>Display a summary of blood counts with a graph here...</p>
         <AddBloodCount show={this.state.addBloodCount} handleClose={this.handleClose} />
-        <Button onClick={this.handleShow}>Add Blood Count</Button>
-      </Grid>
+        <Button bsStyle="primary" onClick={this.handleShow}>
+          <span className="glyphicon glyphicon-plus addBloodCountButton" />
+          Add Blood Count
+        </Button>
+      </div>
     );
   }
 
