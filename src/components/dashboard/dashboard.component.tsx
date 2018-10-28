@@ -1,12 +1,14 @@
 import * as React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Grid, Row } from "react-bootstrap";
 import AddBloodCount from "../blood_count/add-blood-count.component";
+import DashBoardCharts from "./dashboard-charts.component";
 import "./dashboard.css";
-interface IState {
+
+interface IDashboardState {
   addBloodCount: boolean;
 }
 
-export default class BloodCountDashboard extends React.Component<{}, IState> {
+export default class BloodCountDashboard extends React.Component<{}, IDashboardState> {
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -20,13 +22,25 @@ export default class BloodCountDashboard extends React.Component<{}, IState> {
   public render() {
     return (
       <div>
-        <h1>My blood counts</h1>
-        <p>Display a summary of blood counts with a graph here...</p>
+        <Grid>
+          <Row>
+            <Col>
+              <h2>Blood counts</h2>
+            </Col>
+            <Col>
+              <Button bsStyle="primary" onClick={this.handleShow}>
+                <span className="glyphicon glyphicon-plus addBloodCountButton" />
+                Add Blood Count
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <DashBoardCharts />
+            </Col>
+          </Row>
+        </Grid>
         <AddBloodCount show={this.state.addBloodCount} handleClose={this.handleClose} />
-        <Button bsStyle="primary" onClick={this.handleShow}>
-          <span className="glyphicon glyphicon-plus addBloodCountButton" />
-          Add Blood Count
-        </Button>
       </div>
     );
   }
