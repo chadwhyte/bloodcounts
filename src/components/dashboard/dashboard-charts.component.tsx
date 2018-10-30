@@ -1,25 +1,31 @@
 import * as React from "react";
 import { Col, Grid, Row } from "react-bootstrap";
-import Chart from "../charts/chart.component";
+import ReactVisChart from "../charts/chart-reactvis.component";
+import SparklineChart from "../charts/chart-sparkline.component";
 
 export default class DashBoardCharts extends React.Component {
   public render() {
     return (
       <Grid>
         <Row>
-          <Col md={6}>
-            <Chart title="White blood count" color="purple" />
-          </Col>
-          <Col md={6}>
-            <Chart title="Hemoglobin" color="orange" />
+          <Col>
+            <ReactVisChart />
           </Col>
         </Row>
         <Row>
           <Col md={6}>
-            <Chart title="Platelets" color="red" />
+            <SparklineChart title="White blood count" color="purple" />
           </Col>
           <Col md={6}>
-            <Chart title="ANC" color="blue" />
+            <SparklineChart title="Hemoglobin" color="orange" />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <SparklineChart title="Platelets" color="red" />
+          </Col>
+          <Col md={6}>
+            <SparklineChart title="ANC" color="blue" />
           </Col>
         </Row>
       </Grid>

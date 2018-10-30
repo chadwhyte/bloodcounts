@@ -6,7 +6,7 @@ interface IChartProps {
   color: string;
 }
 
-export default class Chart extends React.Component<IChartProps, {}> {
+export default class SparklineChart extends React.Component<IChartProps, {}> {
   constructor(props: IChartProps) {
     super(props);
   }
