@@ -16,17 +16,6 @@ import reducer from "./state/reducers/reducers";
 
 const store = createStore(reducer);
 
-// tslint:disable-next-line:no-console
-console.log(store.getState());
-
-store.dispatch({
-  payload: 1234,
-  type: "ADD_BLOOD_COUNT"
-});
-
-// tslint:disable-next-line:no-console
-console.log(store.getState());
-
 ReactDOM.render(
   <Provider store={store}>
     <Router>

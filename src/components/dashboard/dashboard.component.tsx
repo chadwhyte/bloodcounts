@@ -2,24 +2,26 @@ import * as React from "react";
 import { Button, Col, Grid, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addBloodCount } from "../../state/actions/add-blood-count.action";
+import { addBloodCount, getBloodCounts } from "../../state/actions/blood-count.actions";
 import AddBloodCount from "../blood_count/add-blood-count.component";
 import DashBoardCharts from "./dashboard-charts.component";
 import "./dashboard.css";
 
 interface IDashboardState {
-  addBloodCount: boolean;
+  showAddBloodCount: boolean;
 }
 
 interface IDashboardProps {
   summaries: string[];
+  addBloodCount(wbc: number): void;
+  getBloodCounts(): void;
 }
 
 export class BloodCountDashboard extends React.Component<IDashboardProps, IDashboardState> {
   public constructor(props: IDashboardProps) {
     super(props);
     this.state = {
-      addBloodCount: false
+      showAddBloodCount: false
     };
 
     this.handleShow = this.handleShow.bind(this);
@@ -28,10 +30,7 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
   }
 
   public componentDidMount() {
-    addBloodCount(1234);
-
-    // tslint:disable-next-line:no-console
-    console.log(`componentDidMount: ${this.props.summaries}`);
+    this.props.getBloodCounts();
   }
 
   public render() {
@@ -59,7 +58,7 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
             </Col>
           </Row>
         </Grid>
-        <AddBloodCount show={this.state.addBloodCount} handleClose={this.handleClose} />
+        <AddBloodCount show={this.state.showAddBloodCount} handleClose={this.handleClose} />
       </div>
     );
   }
@@ -75,31 +74,26 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
   }
 
   private handleClose() {
-    this.setState({ addBloodCount: false });
+    this.setState({ showAddBloodCount: false });
   }
 
   private handleShow() {
-    this.setState({ addBloodCount: true });
+    this.setState({ showAddBloodCount: true });
   }
 
   private handleAddAction() {
-    addBloodCount(123);
+    this.props.addBloodCount(123);
   }
 }
 
 const mapStateToProps = (state: any) => {
-  // tslint:disable-next-line:no-console
-  console.log(`mapStateToProps: ${state}`);
-
   return {
-    summaries: state.payload
+    summaries: state.bloodCounts
   };
 };
 
 function mapDispatchToProps(dispatch: any) {
-  // tslint:disable-next-line:no-console
-  console.log(`mapDispatchToProps: ${"executed"}`);
-  return bindActionCreators({ bloodCounts: addBloodCount }, dispatch);
+  return bindActionCreators({ addBloodCount, getBloodCounts }, dispatch);
 }
 
 export default connect(

@@ -1,19 +1,30 @@
-import { ADD_BLOOD_COUNT } from "../actions/action-types";
+import { ADD_BLOOD_COUNT, GET_BLOOD_COUNTS } from "../actions/action-types";
+
+// const initialState = {
+//   bloodCounts: [1, 2, 3, 4]
+// };
+
+// const initialState = {
+//   bloodCounts: []
+// };
 
 export default function bloodCounts(state = [], action: any) {
-  // tslint:disable-next-line:no-console
-  console.log(`bloodCounts-reducer: ${state}, ${action.type}`);
-
   switch (action.type) {
     case ADD_BLOOD_COUNT:
-      //   return [
-      //     { summary: "summary 1" },
-      //     { summary: "summary 2" },
-      //     { summary: "summary 3" },
-      //     { summary: "summary 4" },
-      //     { summary: "summary 5" }
-      //   ];
+      /**
+       * TODO: add to the list...
+       */
+
+      //   return state.bloodCounts.concat(action.payload);
+
+      //    bloodCounts: state.bloodCounts.
+      return [1, 2, 3, 4, ...action.payload];
+    case GET_BLOOD_COUNTS:
+      /**
+       * Get from somewhere...
+       */
       return [1, 2, 3, 4];
+    //   return state.bloodCounts;
     default:
       return state;
   }
