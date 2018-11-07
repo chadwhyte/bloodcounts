@@ -1,30 +1,16 @@
 import { ADD_BLOOD_COUNT, GET_BLOOD_COUNTS } from "../actions/action-types";
 
-// const initialState = {
-//   bloodCounts: [1, 2, 3, 4]
-// };
+const initialState = [1, 2, 3, 4];
 
-// const initialState = {
-//   bloodCounts: []
-// };
-
-export default function bloodCounts(state = [], action: any) {
+export default function bloodCounts(state = initialState, action: any) {
   switch (action.type) {
     case ADD_BLOOD_COUNT:
-      /**
-       * TODO: add to the list...
-       */
-
-      //   return state.bloodCounts.concat(action.payload);
-
-      //    bloodCounts: state.bloodCounts.
-      return [1, 2, 3, 4, ...action.payload];
+      return state.concat(action.payload);
     case GET_BLOOD_COUNTS:
       /**
-       * Get from somewhere...
+       * ToDo: Get from somewhere...
        */
-      return [1, 2, 3, 4];
-    //   return state.bloodCounts;
+      return state;
     default:
       return state;
   }

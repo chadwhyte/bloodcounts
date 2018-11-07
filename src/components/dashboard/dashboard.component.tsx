@@ -82,7 +82,8 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
   }
 
   private handleAddAction() {
-    this.props.addBloodCount(123);
+    const value = Math.floor(Math.random() * 100) + 1;
+    this.props.addBloodCount(value);
   }
 }
 
