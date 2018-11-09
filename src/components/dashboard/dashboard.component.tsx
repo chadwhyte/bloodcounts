@@ -1,10 +1,12 @@
 import * as React from "react";
-import { Button, Col, Grid, Row } from "react-bootstrap";
+import { Button, Col, Grid, Row, Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addBloodCount, getBloodCounts } from "../../state/actions/blood-count.actions";
 import AddBloodCount from "../blood_count/add-blood-count.component";
+import { IBloodCount } from "../blood_count/blood-count.interface";
 import DashBoardCharts from "./dashboard-charts.component";
+
 import "./dashboard.css";
 
 interface IDashboardState {
@@ -12,8 +14,8 @@ interface IDashboardState {
 }
 
 interface IDashboardProps {
-  summaries: string[];
-  addBloodCount(wbc: number): void;
+  summaries: IBloodCount[];
+  addBloodCount(bloodCount: IBloodCount): void;
   getBloodCounts(): void;
 }
 
@@ -36,7 +38,6 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
   public render() {
     return (
       <div>
-        {this.renderSummaries()}
         <Grid>
           <Row>
             <Col>
@@ -58,6 +59,7 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
             </Col>
           </Row>
         </Grid>
+        {this.renderSummaries()}
         <AddBloodCount show={this.state.showAddBloodCount} handleClose={this.handleClose} />
       </div>
     );
@@ -68,9 +70,37 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
       return <p>Loading...</p>;
     }
 
-    return this.props.summaries.map(summary => {
-      return <div key={summary}>{summary}</div>;
-    });
+    return (
+      <Table striped={true} hover={true} responsive={true} bordered={true} condensed={true}>
+        <thead>
+          <tr>
+            {/* ToDo: extract these out to a terms/constants class */}
+            <th>Date</th>
+            <th>White blood count</th>
+            <th>Hemoglobin</th>
+            <th>Platelets</th>
+            <th>ANC (Absolute Neutrophil Count)</th>
+            <th>Dose</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.summaries.map(summary => {
+            return (
+              <tr key={summary.id}>
+                <td>{summary.date.toDateString()}</td>
+                <td>{summary.whiteBloodCount}</td>
+                <td>{summary.hemoglobin}</td>
+                <td>{summary.platelets}</td>
+                <td>{summary.absoluteNeutrophilCount}</td>
+                <td>{summary.dose}</td>
+                <td>{summary.notes}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    );
   }
 
   private handleClose() {
@@ -82,9 +112,21 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
   }
 
   private handleAddAction() {
-    const value = Math.floor(Math.random() * 100) + 1;
+    const value: IBloodCount = {
+      absoluteNeutrophilCount: randomNumber(),
+      date: new Date("12/12/2018"),
+      hemoglobin: randomNumber(),
+      id: randomNumber().toString(),
+      platelets: randomNumber(),
+      whiteBloodCount: randomNumber()
+    };
+
     this.props.addBloodCount(value);
   }
+}
+
+function randomNumber(): number {
+  return Math.floor(Math.random() * 100) + 1;
 }
 
 const mapStateToProps = (state: any) => {

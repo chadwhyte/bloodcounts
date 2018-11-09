@@ -1,8 +1,9 @@
+import { IBloodCount } from "../../components/blood_count/blood-count.interface";
 import { ADD_BLOOD_COUNT, GET_BLOOD_COUNTS } from "./action-types";
 
-export function addBloodCount(wbc: number) {
+export function addBloodCount(bloodCount: IBloodCount) {
   return {
-    payload: wbc,
+    payload: bloodCount,
     type: ADD_BLOOD_COUNT
   };
 }

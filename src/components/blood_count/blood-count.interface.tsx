@@ -1,4 +1,5 @@
 export interface IBloodCount {
+  id: string;
   date: Date;
   whiteBloodCount: number;
   hemoglobin: number;

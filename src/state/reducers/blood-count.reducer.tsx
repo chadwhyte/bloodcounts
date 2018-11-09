@@ -1,24 +1,24 @@
 import { IBloodCount } from "../../components/blood_count/blood-count.interface";
 import { ADD_BLOOD_COUNT, GET_BLOOD_COUNTS } from "../actions/action-types";
 
-const initialState = [1, 2, 3, 4];
 const initialBloodCountState: IBloodCount[] = generateInitialBloodCounts();
 
 function generateInitialBloodCounts(): IBloodCount[] {
-  const bloodCounts: IBloodCount[] = [];
+  const counts: IBloodCount[] = [];
 
   for (let i = 0; i < 10; i++) {
-    bloodCounts.push(generateBloodCount());
+    counts.push(generateBloodCount(i.toString()));
   }
 
-  return bloodCounts;
+  return counts;
 }
 
-function generateBloodCount(): IBloodCount {
+function generateBloodCount(id: string): IBloodCount {
   return {
     absoluteNeutrophilCount: randomNumber(),
     date: new Date("12/12/12"),
     hemoglobin: randomNumber(),
+    id,
     platelets: randomNumber(),
     whiteBloodCount: randomNumber()
   };
@@ -28,7 +28,7 @@ function randomNumber(): number {
   return Math.floor(Math.random() * 100) + 1;
 }
 
-export default function bloodCounts(state = initialState, action: any) {
+export default function bloodCounts(state = initialBloodCountState, action: any) {
   switch (action.type) {
     case ADD_BLOOD_COUNT:
       return state.concat(action.payload);
