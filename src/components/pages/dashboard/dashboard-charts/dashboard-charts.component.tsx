@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Col, Grid, Row } from "react-bootstrap";
 // import ReactVisChart from "../charts/chart-reactvis.component";
-import SparklineChart from "../charts/chart-sparkline.component";
+import SparklineChart from "../../../charts/chart-sparkline.component";
 
 export default class DashBoardCharts extends React.Component {
   public render() {

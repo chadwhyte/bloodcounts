@@ -1,4 +1,4 @@
-import { IBloodCount } from "../../components/blood_count/blood-count.interface";
+import { IBloodCount } from "../../components/pages/dashboard/blood_count/blood-count.interface";
 import { ADD_BLOOD_COUNT, GET_BLOOD_COUNTS } from "./action-types";
 
 export function addBloodCount(bloodCount: IBloodCount) {

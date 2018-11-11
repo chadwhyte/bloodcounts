@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, FormGroup, Modal, ModalBody, ModalHeader } from "react-bootstrap";
-import FormField from "../common/form-field.component";
+import FormField from "../../../common/form-field.component";
 
 interface IProps {
   show: boolean;

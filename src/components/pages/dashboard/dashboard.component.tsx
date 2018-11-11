@@ -1,25 +1,16 @@
 import * as React from "react";
 import { Button, Col, Grid, Row, Table } from "react-bootstrap";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addBloodCount, getBloodCounts } from "../../state/actions/blood-count.actions";
-import AddBloodCount from "../blood_count/add-blood-count.component";
-import { IBloodCount } from "../blood_count/blood-count.interface";
-import DashBoardCharts from "./dashboard-charts.component";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import { addBloodCount, getBloodCounts } from "../../../state/actions/blood-count.actions";
+import AddBloodCount from "./blood_count/add-blood-count.component";
+import { IBloodCount } from "./blood_count/blood-count.interface";
+import DashBoardCharts from "./dashboard-charts/dashboard-charts.component";
+import { IDashboardProps, IDashboardState } from "./dashboard.interface";
 
 import "./dashboard.css";
 
-interface IDashboardState {
-  showAddBloodCount: boolean;
-}
-
-interface IDashboardProps {
-  summaries: IBloodCount[];
-  addBloodCount(bloodCount: IBloodCount): void;
-  getBloodCounts(): void;
-}
-
-export class BloodCountDashboard extends React.Component<IDashboardProps, IDashboardState> {
+export default class BloodCountDashboard extends React.Component<IDashboardProps, IDashboardState> {
   public constructor(props: IDashboardProps) {
     super(props);
     this.state = {
@@ -40,17 +31,19 @@ export class BloodCountDashboard extends React.Component<IDashboardProps, IDashb
       <div>
         <Grid>
           <Row>
-            <Col>
+            <Col xs={12} md={8}>
               <h2>Blood counts</h2>
             </Col>
-            <Col>
-              <Button bsStyle="primary" onClick={this.handleShow}>
-                <span className="glyphicon glyphicon-plus addBloodCountButton" />
-                Add Blood Count
-              </Button>
-              <Button bsStyle="danger" onClick={this.handleAddAction}>
-                Action Test
-              </Button>
+            <Col xs={6} md={4}>
+              <div>
+                <Button bsStyle="primary" onClick={this.handleShow}>
+                  <span className="glyphicon glyphicon-plus addBloodCountButton" />
+                  Add Blood Count
+                </Button>
+                <Button bsStyle="danger" onClick={this.handleAddAction}>
+                  Action Test
+                </Button>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -129,17 +122,17 @@ function randomNumber(): number {
   return Math.floor(Math.random() * 100) + 1;
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    summaries: state.bloodCounts
-  };
-};
+// const mapStateToProps = (state: any) => {
+//   return {
+//     summaries: state.bloodCounts
+//   };
+// };
 
-function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators({ addBloodCount, getBloodCounts }, dispatch);
-}
+// function mapDispatchToProps(dispatch: any) {
+//   return bindActionCreators({ addBloodCount, getBloodCounts }, dispatch);
+// }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BloodCountDashboard);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(BloodCountDashboard);
