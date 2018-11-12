@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+// import { terms } from "../../../locale/terms";
 import { addBloodCount, getBloodCounts } from "../../../state/actions/blood-count.actions";
 import BloodCountDashboard from "./dashboard.component";
+
+// const mapConfigToProps = () => {
+//   return terms;
+// };
 
 const mapStateToProps = (state: any) => {
   return {
@@ -16,4 +21,5 @@ function mapDispatchToProps(dispatch: any) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
+  // mapConfigToProps
 )(BloodCountDashboard);
