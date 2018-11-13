@@ -1,15 +1,12 @@
 import * as React from "react";
 import { Button, FormGroup, Modal, ModalBody, ModalHeader } from "react-bootstrap";
 import FormField from "../../../common/form-field.component";
+import { IAddBloodCountProps, IAddBloodCountState } from "./add-blood-count.interface";
 
-interface IProps {
-  show: boolean;
-  handleClose(): void;
-}
-
-export default class AddBloodCount extends React.Component<IProps, {}> {
-  constructor(props: IProps) {
+export default class AddBloodCount extends React.Component<IAddBloodCountProps, IAddBloodCountState> {
+  public constructor(props: IAddBloodCountProps) {
     super(props);
+    this.onWbcChange = this.onWbcChange.bind(this);
   }
 
   public render() {
@@ -21,7 +18,7 @@ export default class AddBloodCount extends React.Component<IProps, {}> {
         <ModalBody>
           <FormGroup>
             <FormField type="date" label="Date" />
-            <FormField type="text" label="White blood count" />
+            <FormField type="text" label="White blood count" handleChange={this.onWbcChange} />
             <FormField type="text" label="Hemoglobin" />
             <FormField type="text" label="Platelets" />
             <FormField type="text" label="ANC (Absolute Neutrophil Count)" />
@@ -39,5 +36,10 @@ export default class AddBloodCount extends React.Component<IProps, {}> {
         </Modal.Footer>
       </Modal>
     );
+  }
+
+  private onWbcChange() {
+    // tslint:disable-next-line:no-console
+    console.log(`WBC changed`);
   }
 }
