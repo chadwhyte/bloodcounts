@@ -1,5 +1,7 @@
 import * as React from "react";
-import { ControlLabel, FormControl } from "react-bootstrap";
+import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
+import { ValidationStateType } from "./field-validation-state.type";
+
 import "./form-field.css";
 
 interface IFormFieldProps {
@@ -7,6 +9,7 @@ interface IFormFieldProps {
   label: string;
   placeholder?: string;
   componentClass?: string;
+  validationState?: ValidationStateType;
   handleChange?(): void;
 }
 
@@ -21,9 +24,10 @@ export default class FormField extends React.Component<IFormFieldProps, IFormFie
       value: null
     };
   }
+
   public render() {
     return (
-      <div>
+      <FormGroup validationState={this.props.validationState}>
         <ControlLabel>{this.props.label}</ControlLabel>
         <FormControl
           type={this.props.type}
@@ -33,7 +37,8 @@ export default class FormField extends React.Component<IFormFieldProps, IFormFie
           componentClass={this.props.componentClass}
           className="formControl"
         />
-      </div>
+        <FormControl.Feedback />
+      </FormGroup>
     );
   }
 }

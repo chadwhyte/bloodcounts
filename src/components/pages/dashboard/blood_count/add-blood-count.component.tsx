@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, FormGroup, Modal, ModalBody, ModalHeader } from "react-bootstrap";
+import { Button, Modal, ModalBody, ModalHeader } from "react-bootstrap";
 import FormField from "../../../common/form-field.component";
 import { IAddBloodCountProps, IAddBloodCountState } from "./add-blood-count.interface";
 
@@ -16,15 +16,13 @@ export default class AddBloodCount extends React.Component<IAddBloodCountProps, 
           <h3>Add blood count</h3>
         </ModalHeader>
         <ModalBody>
-          <FormGroup>
-            <FormField type="date" label="Date" />
-            <FormField type="text" label="White blood count" handleChange={this.onWbcChange} />
-            <FormField type="text" label="Hemoglobin" />
-            <FormField type="text" label="Platelets" />
-            <FormField type="text" label="ANC (Absolute Neutrophil Count)" />
-            <FormField type="text" label="Dose" />
-            <FormField type="text" label="Notes" componentClass="textarea" />
-          </FormGroup>
+          <FormField type="date" label="Date" />
+          <FormField type="text" label="White blood count" handleChange={this.onWbcChange} />
+          <FormField type="text" label="Hemoglobin" validationState="warning" />
+          <FormField type="text" label="Platelets" validationState="error" />
+          <FormField type="text" label="ANC" validationState="success" />
+          <FormField type="text" label="Dose" />
+          <FormField type="text" label="Notes" />
         </ModalBody>
         <Modal.Footer>
           <Button bsStyle="success" onClick={this.props.handleClose}>
