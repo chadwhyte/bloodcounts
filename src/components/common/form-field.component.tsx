@@ -10,7 +10,7 @@ interface IFormFieldProps {
   placeholder?: string;
   componentClass?: string;
   validationState?: ValidationStateType;
-  handleChange?(): void;
+  handleChange?(event: React.FormEvent<FormControl>): void;
 }
 
 interface IFormFieldState {
