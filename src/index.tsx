@@ -4,6 +4,7 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createStore } from "redux";
+import { devToolsEnhancer } from "redux-devtools-extension";
 import Footer from "./components/layout/footer";
 import Navigation from "./components/layout/navigation.component";
 import About from "./components/pages/about/about.component";
@@ -14,7 +15,7 @@ import "./index.css";
 import registerServiceWorker from "./registerServiceWorker";
 import reducer from "./state/reducers/reducers";
 
-const store = createStore(reducer);
+const store = createStore(reducer, devToolsEnhancer({}));
 
 ReactDOM.render(
   <Provider store={store}>

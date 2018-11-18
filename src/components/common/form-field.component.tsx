@@ -7,31 +7,21 @@ import "./form-field.css";
 interface IFormFieldProps {
   type: string;
   label: string;
+  value: any;
   placeholder?: string;
   componentClass?: string;
   validationState?: ValidationStateType;
   handleChange?(event: React.FormEvent<FormControl>): void;
 }
 
-interface IFormFieldState {
-  value: any;
-}
-
-export default class FormField extends React.Component<IFormFieldProps, IFormFieldState> {
-  constructor(props: IFormFieldProps) {
-    super(props);
-    this.state = {
-      value: null
-    };
-  }
-
+export default class FormField extends React.Component<IFormFieldProps> {
   public render() {
     return (
       <FormGroup validationState={this.props.validationState}>
         <ControlLabel>{this.props.label}</ControlLabel>
         <FormControl
           type={this.props.type}
-          value={this.state.value}
+          value={this.props.value}
           placeholder={this.props.placeholder}
           onChange={this.props.handleChange}
           componentClass={this.props.componentClass}
