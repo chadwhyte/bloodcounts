@@ -1,6 +1,7 @@
+import * as _ from "lodash";
 import * as React from "react";
 import { Button, Col, Grid, Row, Table } from "react-bootstrap";
-// import AddBloodCount from "./blood_count/add-blood-count.component";
+import Moment from "react-moment";
 import AddBloodCount from "./blood_count/add-blood-count.container";
 import { IBloodCount } from "./blood_count/blood-count.interface";
 import DashBoardCharts from "./dashboard-charts/dashboard-charts.component";
@@ -23,6 +24,8 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
   }
 
   public render() {
+    const ancData: number[] = _.reject(this.props.summaries.map(s => s.absoluteNeutrophilCount), _.isNil);
+
     return (
       <div>
         <Grid>
@@ -36,15 +39,12 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
                   <span className="glyphicon glyphicon-plus addBloodCountButton" />
                   Add Blood Count
                 </Button>
-                <Button bsStyle="danger" onClick={this.handleAddAction}>
-                  Action Test
-                </Button>
               </div>
             </Col>
           </Row>
           <Row>
             <Col>
-              <DashBoardCharts />
+              <DashBoardCharts ancData={ancData} />
             </Col>
           </Row>
         </Grid>
@@ -86,7 +86,9 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
           {this.props.summaries.map(summary => {
             return (
               <tr key={summary.id}>
-                <td>{summary.date.toDateString()}</td>
+                <td>
+                  <Moment format="MMM D YYYY">{summary.date.toString()}</Moment>
+                </td>
                 <td>{summary.whiteBloodCount}</td>
                 <td>{summary.hemoglobin}</td>
                 <td>{summary.platelets}</td>

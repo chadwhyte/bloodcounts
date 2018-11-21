@@ -2,8 +2,9 @@ import * as React from "react";
 import { Col, Grid, Row } from "react-bootstrap";
 // import ReactVisChart from "../charts/chart-reactvis.component";
 import SparklineChart from "../../../charts/chart-sparkline.component";
+import { IDashboardChartProps } from "./dashboard-charts.interface";
 
-export default class DashBoardCharts extends React.Component {
+export default class DashBoardCharts extends React.Component<IDashboardChartProps, {}> {
   public render() {
     return (
       <Grid>
@@ -12,7 +13,7 @@ export default class DashBoardCharts extends React.Component {
               <ReactVisChart />
               </Col>
           </Row> */}
-        <Row>
+        {/* <Row>
           <Col md={6}>
             <SparklineChart title="White blood count" color="purple" />
           </Col>
@@ -26,6 +27,11 @@ export default class DashBoardCharts extends React.Component {
           </Col>
           <Col md={6}>
             <SparklineChart title="ANC" color="blue" />
+          </Col>
+        </Row> */}
+        <Row>
+          <Col>
+            <SparklineChart title="ANC" color="blue" data={this.props.ancData} />
           </Col>
         </Row>
       </Grid>
