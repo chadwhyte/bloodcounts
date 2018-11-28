@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Col, Grid, Row } from "react-bootstrap";
-// import ReactVisChart from "../charts/chart-reactvis.component";
+import ReactVisChart from "../../../charts/chart-reactvis.component";
 import SparklineChart from "../../../charts/chart-sparkline.component";
 import { IDashboardChartProps } from "./dashboard-charts.interface";
 
-export default class DashBoardCharts extends React.Component<IDashboardChartProps, {}> {
+export default class DashboardCharts extends React.Component<IDashboardChartProps, {}> {
   public render() {
     return (
       <Grid>
@@ -32,6 +32,11 @@ export default class DashBoardCharts extends React.Component<IDashboardChartProp
         <Row>
           <Col>
             <SparklineChart title="ANC" color="blue" data={this.props.ancData} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ReactVisChart title="ANC" color="blue" data={this.props.ancData} />
           </Col>
         </Row>
       </Grid>

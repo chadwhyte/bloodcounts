@@ -19,10 +19,6 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
     this.handleAddAction = this.handleAddAction.bind(this);
   }
 
-  public componentDidMount() {
-    this.props.getBloodCounts();
-  }
-
   public render() {
     const ancData: number[] = _.reject(this.props.summaries.map(s => s.absoluteNeutrophilCount), _.isNil);
 

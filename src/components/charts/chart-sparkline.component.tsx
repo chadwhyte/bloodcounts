@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine, SparklinesSpots } from "react-sparklines";
-import { ISparklineChartProps } from "./chart-sparkline.interface";
+import { IChartProps } from "./chart.interface";
 
-export default class SparklineChart extends React.Component<ISparklineChartProps, {}> {
-  constructor(props: ISparklineChartProps) {
+export default class SparklineChart extends React.Component<IChartProps, {}> {
+  constructor(props: IChartProps) {
     super(props);
   }
   public render() {
