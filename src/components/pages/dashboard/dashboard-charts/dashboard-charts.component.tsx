@@ -1,35 +1,20 @@
 import * as React from "react";
 import { Col, Grid, Row } from "react-bootstrap";
-import ReactVisChart from "../../../charts/chart-reactvis.component";
-import SparklineChart from "../../../charts/chart-sparkline.component";
+// import ReactVisChart from "../../../charts/chart-reactvis.component";
+import ReChart from "../../../charts/chart-recharts.component";
+// import SparklineChart from "../../../charts/chart-sparkline.component";
 import { IDashboardChartProps } from "./dashboard-charts.interface";
 
 export default class DashboardCharts extends React.Component<IDashboardChartProps, {}> {
   public render() {
     return (
       <Grid>
-        {/* <Row>
-              <Col>
-              <ReactVisChart />
-              </Col>
-          </Row> */}
-        {/* <Row>
-          <Col md={6}>
-            <SparklineChart title="White blood count" color="purple" />
-          </Col>
-          <Col md={6}>
-            <SparklineChart title="Hemoglobin" color="orange" />
+        <Row>
+          <Col>
+            <ReChart title="ANC" color="blue" data={this.props.ancData} />
           </Col>
         </Row>
-        <Row>
-          <Col md={6}>
-            <SparklineChart title="Platelets" color="red" />
-          </Col>
-          <Col md={6}>
-            <SparklineChart title="ANC" color="blue" />
-          </Col>
-        </Row> */}
-        <Row>
+        {/* <Row>
           <Col>
             <SparklineChart title="ANC" color="blue" data={this.props.ancData} />
           </Col>
@@ -38,7 +23,7 @@ export default class DashboardCharts extends React.Component<IDashboardChartProp
           <Col>
             <ReactVisChart title="ANC" color="blue" data={this.props.ancData} />
           </Col>
-        </Row>
+        </Row> */}
       </Grid>
     );
   }

@@ -13,6 +13,8 @@ export function generateInitialBloodCounts(): IBloodCount[] {
   counts.push(generateBloodCount("7", "2018-11-03", 5.1, 127, 692, 1400, 4.0, undefined));
   counts.push(generateBloodCount("8", "2018-11-04", undefined, undefined, undefined, 1000, undefined, "Hospital"));
   counts.push(generateBloodCount("9", "2018-11-10", 5.1, 113, 546, 1400, 4.0, "Electrolytes good"));
+  counts.push(generateBloodCount("10", "2018-11-17", 5.0, 107, 516, 900, 4.0, undefined));
+  counts.push(generateBloodCount("11", "2018-11-23", 3.9, 105, 472, 1000, 4.0, undefined));
 
   return counts;
 }
