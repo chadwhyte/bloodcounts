@@ -1,5 +1,5 @@
 export interface IChartProps {
   title: string;
-  color: string;
-  data: number[];
+  color?: string;
+  data: any;
 }
