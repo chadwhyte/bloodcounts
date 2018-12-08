@@ -1,6 +1,6 @@
 export interface IBloodCount {
   id: string;
-  date: Date;
+  date: number;
   whiteBloodCount?: number;
   hemoglobin?: number;
   platelets?: number;

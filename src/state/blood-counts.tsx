@@ -31,7 +31,7 @@ function generateBloodCount(
 ): IBloodCount {
   return {
     absoluteNeutrophilCount,
-    date: new Date(date),
+    date: new Date(date).getTime(),
     dose,
     hemoglobin,
     id,

@@ -12,7 +12,7 @@ export default class AddBloodCount extends React.Component<IAddBloodCountProps, 
     super(props);
     this.state = {
       bloodCount: {
-        date: new Date(),
+        date: new Date().getTime(),
         id: "abc123"
       }
     };
