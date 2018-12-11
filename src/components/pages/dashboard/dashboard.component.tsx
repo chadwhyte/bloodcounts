@@ -4,6 +4,7 @@ import { Button, Col, Grid, Row, Table } from "react-bootstrap";
 import Moment from "react-moment";
 import ReChart from "../../charts/chart-recharts.component";
 import AddBloodCount from "./blood_count/add-blood-count.container";
+import { IBloodCount } from "./blood_count/blood-count.interface";
 import { IDashboardProps, IDashboardState } from "./dashboard.interface";
 
 export default class BloodCountDashboard extends React.Component<IDashboardProps, IDashboardState> {
@@ -34,7 +35,7 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
           </Row>
           <Row>
             <Col>
-              <ReChart title="Blood Counts" data={this.props.summaries} />
+              <ReChart title="Blood Counts" data={this.getBloodCounts()} />
             </Col>
           </Row>
         </Grid>
@@ -64,7 +65,7 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
           </tr>
         </thead>
         <tbody>
-          {this.props.summaries.map(summary => {
+          {this.getBloodCounts().map(summary => {
             return (
               <tr key={summary.id}>
                 <td>
@@ -82,6 +83,10 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
         </tbody>
       </Table>
     );
+  }
+
+  private getBloodCounts(): IBloodCount[] {
+    return _.orderBy(this.props.summaries, "date");
   }
 
   private handleClose() {
