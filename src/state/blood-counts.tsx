@@ -3,7 +3,7 @@ import { IBloodCount } from "../components/pages/dashboard/blood_count/blood-cou
 export function generateInitialBloodCounts(): IBloodCount[] {
   const counts: IBloodCount[] = [];
 
-  // Date	        WBC	Hemoglobin	Platelets	ANC	Dose	Notes
+  // Date, WBC, Hemoglobin, Platelets, ANC, Dose, Notes
   counts.push(generateBloodCount("1", "2018-09-26", 5.1, 133, 264, 2700, 4.8, undefined));
   counts.push(generateBloodCount("2", "2018-10-05", 3.9, 109, 508, 900, 4.8, undefined));
   counts.push(generateBloodCount("3", "2018-10-13", 4.2, 123, 613, 900, 4.8, "Electrolytes good"));
@@ -16,7 +16,8 @@ export function generateInitialBloodCounts(): IBloodCount[] {
   counts.push(generateBloodCount("10", "2018-11-17", 5.0, 107, 516, 900, 4.0, undefined));
   counts.push(generateBloodCount("11", "2018-11-23", 3.9, 105, 472, 1000, 4.0, undefined));
   counts.push(generateBloodCount("12", "2018-12-01", 3.7, 107, 567, 1200, 4.0, undefined));
-  counts.push(generateBloodCount("13", "2018-11-08", 4.6, 108, 530, 1700, 4.0, undefined));
+  counts.push(generateBloodCount("13", "2018-12-08", 4.6, 108, 530, 1700, 4.0, undefined));
+  counts.push(generateBloodCount("14", "2018-12-15", 2.3, 105, 457, 400, 4.6, undefined));
 
   return counts;
 }

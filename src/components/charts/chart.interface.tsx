@@ -2,7 +2,7 @@ export interface IChartProps {
   title: string;
   color?: string;
   data: any;
-  series?: IChartSeries[];
+  series: IChartSeries[];
 }
 
 export interface IChartSeries {

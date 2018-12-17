@@ -3,6 +3,7 @@ import * as React from "react";
 import { Button, Col, Grid, Row, Table } from "react-bootstrap";
 import Moment from "react-moment";
 import ReChart from "../../charts/chart-recharts.component";
+import { IChartSeries } from "../../charts/chart.interface";
 import AddBloodCount from "./blood_count/add-blood-count.container";
 import { IBloodCount } from "./blood_count/blood-count.interface";
 import { IDashboardProps, IDashboardState } from "./dashboard.interface";
@@ -35,7 +36,7 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
           </Row>
           <Row>
             <Col>
-              <ReChart title="Blood Counts" data={this.getBloodCounts()} />
+              <ReChart title="Blood Counts" data={this.getBloodCounts("asc")} series={this.getChartSeries()} />
             </Col>
           </Row>
         </Grid>
@@ -65,7 +66,7 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
           </tr>
         </thead>
         <tbody>
-          {this.getBloodCounts().map(summary => {
+          {this.getBloodCounts("desc").map(summary => {
             return (
               <tr key={summary.id}>
                 <td>
@@ -85,8 +86,8 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
     );
   }
 
-  private getBloodCounts(): IBloodCount[] {
-    return _.orderBy(this.props.summaries, "date");
+  private getBloodCounts(order: "desc" | "asc"): IBloodCount[] {
+    return _.orderBy(this.props.summaries, "date", order);
   }
 
   private handleClose() {
@@ -95,5 +96,14 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
 
   private handleShow() {
     this.setState({ showAddBloodCount: true });
+  }
+
+  private getChartSeries(): IChartSeries[] {
+    return [
+      { name: "White Blood Count", dataKey: "whiteBloodCount", stroke: "red", yAxisId: "right" },
+      { name: "ANC", dataKey: "absoluteNeutrophilCount", stroke: "#82ca9d", yAxisId: "left" },
+      { name: "Hemoglobin", dataKey: "hemoglobin", stroke: "orange", yAxisId: "left" },
+      { name: "Platelets", dataKey: "platelets", stroke: "blue", yAxisId: "left" }
+    ];
   }
 }
