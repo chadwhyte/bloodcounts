@@ -10,3 +10,7 @@ export interface IDashboardProps {
   addBloodCount(bloodCount: IBloodCount): void;
   getBloodCounts(): void;
 }
+
+export interface IDashboardChartProps {
+  summaries: IBloodCount[];
+}

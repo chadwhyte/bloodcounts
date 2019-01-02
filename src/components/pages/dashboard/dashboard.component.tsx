@@ -2,10 +2,9 @@ import * as _ from "lodash";
 import * as React from "react";
 import { Button, Col, Grid, Row, Table } from "react-bootstrap";
 import Moment from "react-moment";
-import ReChart from "../../charts/chart-recharts.component";
-import { IChartSeries } from "../../charts/chart.interface";
 import AddBloodCount from "./blood_count/add-blood-count.container";
 import { IBloodCount } from "./blood_count/blood-count.interface";
+import DashboardChart from "./dashboard-chart.component";
 import { IDashboardProps, IDashboardState } from "./dashboard.interface";
 
 export default class BloodCountDashboard extends React.Component<IDashboardProps, IDashboardState> {
@@ -36,7 +35,7 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
           </Row>
           <Row>
             <Col>
-              <ReChart title="Blood Counts" data={this.getBloodCounts("asc")} series={this.getChartSeries()} />
+              <DashboardChart summaries={this.getBloodCounts("asc")} />
             </Col>
           </Row>
         </Grid>
@@ -96,14 +95,5 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
 
   private handleShow() {
     this.setState({ showAddBloodCount: true });
-  }
-
-  private getChartSeries(): IChartSeries[] {
-    return [
-      { name: "White Blood Count", dataKey: "whiteBloodCount", stroke: "red", yAxisId: "right" },
-      { name: "ANC", dataKey: "absoluteNeutrophilCount", stroke: "#82ca9d", yAxisId: "left" },
-      { name: "Hemoglobin", dataKey: "hemoglobin", stroke: "orange", yAxisId: "left" },
-      { name: "Platelets", dataKey: "platelets", stroke: "blue", yAxisId: "left" }
-    ];
   }
 }
