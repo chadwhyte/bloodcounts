@@ -1,10 +1,10 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { Button, Col, Grid, Row, Table } from "react-bootstrap";
-import Moment from "react-moment";
+import { Button } from "react-bootstrap";
 import AddBloodCount from "./blood_count/add-blood-count.container";
 import { IBloodCount } from "./blood_count/blood-count.interface";
 import DashboardChart from "./dashboard-chart.component";
+import DashboardTable from "./dashboard-table.component";
 import { IDashboardProps, IDashboardState } from "./dashboard.interface";
 
 export default class BloodCountDashboard extends React.Component<IDashboardProps, IDashboardState> {
@@ -21,67 +21,14 @@ export default class BloodCountDashboard extends React.Component<IDashboardProps
   public render() {
     return (
       <div>
-        <Grid>
-          <Row>
-            <Col>
-              <h2>Blood counts</h2>
-            </Col>
-            <Col>
-              <Button bsStyle="primary" onClick={this.handleShow}>
-                <span className="glyphicon glyphicon-plus addBloodCountButton" />
-                Add Blood Count
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <DashboardChart summaries={this.getBloodCounts("asc")} />
-            </Col>
-          </Row>
-        </Grid>
-        {this.renderSummaries()}
+        <Button bsStyle="primary" onClick={this.handleShow}>
+          <span className="glyphicon glyphicon-plus addBloodCountButton" />
+          Add Blood Count
+        </Button>
+        <DashboardChart summaries={this.getBloodCounts("asc")} />
+        <DashboardTable summaries={this.getBloodCounts("desc")} />
         <AddBloodCount show={this.state.showAddBloodCount} handleClose={this.handleClose} />
       </div>
-    );
-  }
-
-  private renderSummaries() {
-    if (!this.props.summaries) {
-      return <p>Loading...</p>;
-    }
-
-    return (
-      <Table striped={true} hover={true} responsive={true} bordered={true} condensed={true}>
-        <thead>
-          <tr>
-            {/* ToDo: extract these out to a terms/constants class */}
-            <th>Date</th>
-            <th>White blood count</th>
-            <th>Hemoglobin</th>
-            <th>Platelets</th>
-            <th>ANC (Absolute Neutrophil Count)</th>
-            <th>Dose</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.getBloodCounts("desc").map(summary => {
-            return (
-              <tr key={summary.id}>
-                <td>
-                  <Moment format="MMM D, YYYY">{summary.date}</Moment>
-                </td>
-                <td>{summary.whiteBloodCount}</td>
-                <td>{summary.hemoglobin}</td>
-                <td>{summary.platelets}</td>
-                <td>{summary.absoluteNeutrophilCount}</td>
-                <td>{summary.dose}</td>
-                <td>{summary.notes}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
     );
   }
 

@@ -14,3 +14,7 @@ export interface IDashboardProps {
 export interface IDashboardChartProps {
   summaries: IBloodCount[];
 }
+
+export interface IDashboardTableProps {
+  summaries: IBloodCount[];
+}
